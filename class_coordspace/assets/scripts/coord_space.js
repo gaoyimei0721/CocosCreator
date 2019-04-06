@@ -32,6 +32,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function() {
+        /*
         var w_pos = new cc.Vec2(100, 100);
         console.log(w_pos);
 
@@ -67,6 +68,22 @@ cc.Class({
         var rhs = cc.rect(100,100,100,100);
         var ret = r.intersects(rhs);
         console.log(ret);
+        */
+
+        //节点坐标转到屏幕坐标 cc.v2(0,0)
+        var w_pos = this.node.convertToWorldSpace(cc.v2(0,0)); //以左下角为原点
+        console.log(w_pos);//Vec2 {x: 462, y: 270}
+        w_pos = this.node.convertToWorldSpaceAR(cc.v2(0,0)); //以锚点为原点
+        console.log(w_pos);//Vec2 {x: 512, y: 320}
+        // end
+
+        //世界坐标转节点坐标
+        var w_pos = cc.v2(512,320);
+        var node_pos = this.node.convertToNodeSpace(w_pos); 
+        console.log(node_pos); //Vec2 {x: 50, y: 50}
+        node_pos = this.node.convertToNodeSpaceAR(w_pos); 
+        console.log(node_pos); //Vec2 {x: 0, y: 0}
+         
     },
 
     start () {
